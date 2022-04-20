@@ -2,7 +2,7 @@
 const express = require("express")
 
 //Criando um array com valores de teste
-const allTodos = [{ nome: "aaaa", status: false }]
+// const allTodos = [{ nome: "aaaa", status: false }]
 
 //Criando uma instância do express Router
 const todosRoutes = express.Router()
@@ -21,14 +21,13 @@ todosRoutes.post("/todos", async (req, res) => {
             name,
         }
     })
-
-    // allTodos.push({ name, status: false })
-    return res.status(201).json(allTodos)
+    return res.status(201).json(todo)
 })
 
 // Read
-todosRoutes.get("/todos", (req, res) => {
-    return res.status(200).json(allTodos)
+todosRoutes.get("/todos", async (req, res) => {
+    const todos = await prisma.todo.findMany()
+    return res.status(200).json(todos)
 })
 
 // U
