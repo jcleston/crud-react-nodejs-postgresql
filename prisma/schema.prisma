@@ -7,5 +7,12 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  // url      = env("DATABASE_URL")
+  url      = "postgresql://caridade:dev@10.168.250.6:5432/ato_caridade"
+}
+
+model Todo {
+  id     Int     @id @default(autoincrement())
+  status Boolean
+  name   String
 }

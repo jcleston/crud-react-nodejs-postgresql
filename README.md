@@ -24,6 +24,9 @@ Crud completo com ReactJs + NodeJs + PostgreSQL 🚀
     * [Docker](#docker)
   * [Executando o server](#executando-o-server)
   * [Montando a API](#montando-a-api)
+  * [Configurando o Banco de Dados](#configurando-o-banco-de-dados)
+
+  
 <!--te-->
 <br /><br />
 
@@ -61,7 +64,7 @@ $ npx prisma init
 ```
 
 ## Docker
-Instalação<br />
+Instalação OPCIONAL<br />
 Acesse a página: https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/ <br />
 Baixe o arquivo: https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/docker-ce-cli_18.09.0~3-0~ubuntu-bionic_amd64.deb
 ```shell
@@ -123,9 +126,30 @@ app.get("/health", (req, res) => {
 app.listen(3333, () => console.log("Server up in 3333"))
 ```
 
+## Configurando o Banco de Dados
+Após a instalação do Prisma, temos que configurar o arquivo schema.prisma da seguinte forma:
 
+```shell
+generator client {
+  provider = "prisma-client-js"
+}
 
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://usuario:senha@host:porta/banco"
+}
 
+//Montando a model/tabela
+model Todo {
+  id     Int     @id @default(autoincrement())
+  status Boolean
+  name   String
+}
+```
 
+Para executar o migrate devemos rodar a instrução:
+```shell
+$ npx prisma migrate dev Todo
+```
 
 
