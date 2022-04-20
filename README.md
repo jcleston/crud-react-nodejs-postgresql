@@ -20,7 +20,8 @@ Crud completo com ReactJs + NodeJs + PostgreSQL 🚀
     * [Express](#express)
     * [Nodemon](#nodemon)
     * [Cors](#cors)
-    
+  * [Executando o server](#executando-o-server)
+  * [Montando a API](#montando-a-api)
 <!--te-->
 <br /><br />
 
@@ -47,13 +48,48 @@ $ sudo npm install -g nodemon
 ```shell
 $ npm install cors
 ```
+## Executando o server
 
-Criar diretório src
-Criar o arquivo server.js dentro do diretório src
-Adicionar nos scripts do arquivo package.json a seguinte linha:
+<p>* Criar diretório src</p>
+<p>* Criar o arquivo server.js dentro do diretório src</p>
+<p>* Adicionar nos scripts do arquivo package.json a seguinte linha:</p>
+
+```shell
 "dev": "nodemon src/server.js"
-Executar o serviço digitando no terminal a seguinte instrução:
-npm run dev
+```
+<p>Executar o serviço digitando no terminal a seguinte instrução:</p>
+
+```shell
+$ npm run dev
+```
+<h4 align="right">
+
+[Voltar para o Menu Geral](#menu-geral)
+</h4>
+
+## Montando a API
+
+Codificar o arquivo server.js
+```shell
+//Importando o express
+const express = require("express")
+
+//Criando uma instância do express
+const app = express()
+
+//Definindo o tipo de uso para o servidor
+app.use(express.json())
+
+//Criando uma rota
+app.get("/health", (req, res) => {
+    return res.json("up")
+})
+
+//Definindo a porta do server
+app.listen(3333, () => console.log("Server up in 3333"))
+```
+
+
 
 
 
