@@ -20,6 +20,7 @@ Crud completo com ReactJs + NodeJs + PostgreSQL 🚀
     * [Express](#express)
     * [Nodemon](#nodemon)
     * [Cors](#cors)
+    * [Prisma](#prisma)
     * [Docker](#docker)
   * [Executando o server](#executando-o-server)
   * [Montando a API](#montando-a-api)
@@ -50,16 +51,21 @@ $ sudo npm install -g nodemon
 $ npm install cors
 ```
 
-## Docker
-Instalação
+## Prisma
 ```shell
-$ sudo apt-get update
-$ curl -fsSL https://get.docker.com -o get-docker.sh
-$ DRY_RUN=1 sh ./get-docker.sh
-$ curl -fsSL https://get.docker.com -o get-docker.sh
-$ sudo sh get-docker.sh
+$ npm install prisma
+```
+Para rodar o Prisma
+```shell
+$ npx prisma init
+```
 
-
+## Docker
+Instalação<br />
+Acesse a página: https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/ <br />
+Baixe o arquivo: https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/docker-ce-cli_18.09.0~3-0~ubuntu-bionic_amd64.deb
+```shell
+$ sudo dpkg -i /path/to/docker-ce-cli_18.09.0_3-0_ubuntu-bionic_amd64.deb 
 ```
 
 Verificanco a versão instalada
@@ -75,6 +81,7 @@ $ sudo rm -rf /var/lib/containerd
 ```
 Documentação oficial no link: <a href="https://docs.docker.com/engine/install/ubuntu/">docs.docker.com</a>
 
+<br />
 ## Executando o server
 
 <p>* Criar diretório src</p>

@@ -19,6 +19,7 @@
   "homepage": "https://github.com/jcleston/crud-react-nodejs-postgresql#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "prisma": "^3.12.0"
   }
 }
