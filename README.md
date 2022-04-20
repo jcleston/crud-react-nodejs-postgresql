@@ -20,6 +20,7 @@ Crud completo com ReactJs + NodeJs + PostgreSQL 🚀
     * [Express](#express)
     * [Nodemon](#nodemon)
     * [Cors](#cors)
+    * [Docker](#docker)
   * [Executando o server](#executando-o-server)
   * [Montando a API](#montando-a-api)
 <!--te-->
@@ -48,6 +49,32 @@ $ sudo npm install -g nodemon
 ```shell
 $ npm install cors
 ```
+
+## Docker
+Instalação
+```shell
+$ sudo apt-get update
+$ curl -fsSL https://get.docker.com -o get-docker.sh
+$ DRY_RUN=1 sh ./get-docker.sh
+$ curl -fsSL https://get.docker.com -o get-docker.sh
+$ sudo sh get-docker.sh
+
+
+```
+
+Verificanco a versão instalada
+```shell
+$ docker -v
+```
+
+Desinstalação
+```shell
+$ sudo apt-get remove docker docker-engine docker.io containerd runc
+$ sudo rm -rf /var/lib/docker
+$ sudo rm -rf /var/lib/containerd
+```
+Documentação oficial no link: <a href="https://docs.docker.com/engine/install/ubuntu/">docs.docker.com</a>
+
 ## Executando o server
 
 <p>* Criar diretório src</p>
