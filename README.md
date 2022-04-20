@@ -55,12 +55,24 @@ $ npm install cors
 ```
 
 ## Prisma
+Para instalar o Prisma
 ```shell
 $ npm install prisma
 ```
+
+Para instalar o Prisma Client
+```shell
+$ npm install @prisma/client
+```
+
 Para rodar o Prisma
 ```shell
 $ npx prisma init
+```
+
+Para atualizar migrate
+```shell
+npx prisma migrate dev nome_nova_migrate 
 ```
 
 ## Docker
@@ -150,6 +162,11 @@ model Todo {
 Para executar o migrate devemos rodar a instrução:
 ```shell
 $ npx prisma migrate dev Todo
+```
+
+Para visualizar os dados do migrate utilizando o Prisma Studio devemos rodar a instrução:
+```shell
+$ npx prisma studio
 ```
 
 

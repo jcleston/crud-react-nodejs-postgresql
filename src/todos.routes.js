@@ -7,10 +7,22 @@ const allTodos = [{ nome: "aaaa", status: false }]
 //Criando uma instância do express Router
 const todosRoutes = express.Router()
 
+//Importar o Prisma Client
+const { PrismaClient } = require("@prisma/client")
+
+//Criando uma instância do Prisma Client
+const prisma = new PrismaClient()
+
 // Create
-todosRoutes.post("/todos", (req, res) => {
+todosRoutes.post("/todos", async (req, res) => {
     const { name } = req.body
-    allTodos.push({ name, status: false })
+    const todo = await prisma.todo.create({
+        data: {
+            name,
+        }
+    })
+
+    // allTodos.push({ name, status: false })
     return res.status(201).json(allTodos)
 })
 
