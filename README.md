@@ -72,7 +72,7 @@ $ npx prisma init
 
 Para atualizar migrate
 ```shell
-npx prisma migrate dev nome_nova_migrate 
+$ npx prisma migrate dev nome_nova_migrate 
 ```
 
 ## Docker
