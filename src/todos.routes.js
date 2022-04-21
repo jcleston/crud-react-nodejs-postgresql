@@ -46,18 +46,34 @@ todosRoutes.put("/todos", async (req, res) => {
     }
 
     const todo = await prisma.todo.update({
-        where: {
-            id,
-        },
-        data: {
-            name,
-            status,
-        },
+        where: { id, },
+        data: { name, status, },
     })
     return res.status(200).json(todo)
 })
 
-// D
+// Delete
+todosRoutes.delete("/todos/:id", async (req, res) => {
+    const { id } = req.params
+
+    const intId = parseInt(id)
+
+    if (!intId) {
+        return res.status(400).json("Id obrigatório")
+    }
+
+    const todoAlreadyExist = await prisma.todo.findUnique({
+        where: { id: intId },
+    })
+
+    if (!todoAlreadyExist) {
+        return res.status(404).json("Id não encontrado")
+    }
+
+    await prisma.todo.delete({ where: { id: intId } })
+
+    return res.status(200).send()
+})
 
 //Expotar rotas
 module.exports = todosRoutes
