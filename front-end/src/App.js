@@ -18,7 +18,7 @@ function App() {
                 onClick={() => modifiStatusTodo(todo)}
                 className='checkbox'
                 style={{ backgroundColor: todo.status ? '#A879E6' : 'white' }}></button>
-              <p>{todo.name}</p>
+              <p>{todo.id} - {todo.name}</p>
               <button onClick={() => handleWithEditButtonClick(todo)}>
                 <AiOutlineEdit size={20} color={'#64697b'}></AiOutlineEdit>
               </button>
