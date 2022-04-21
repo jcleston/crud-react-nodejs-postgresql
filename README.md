@@ -349,3 +349,256 @@ Dentro do diretório raiz do projeto execute:
 $ npm start
 ```
 Obs: será iniciado o navegador com a página inicial do React
+
+## Montando o Front-End
+Codificar o arquivo App.js
+```shell
+import logo from './logo.svg';
+import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai'
+import './App.css';
+import { useEffect, useState } from 'react';
+import axios from 'axios'
+// import { get } from '../../back-end/src/todos.routes';
+
+function App() {
+
+  //Criando um componente
+  const Todos = ({ todos }) => {
+    return (
+      <div className="todos">
+        {todos.map((todo) => {
+          return (
+            <div className="todo">
+              <button
+                onClick={() => modifiStatusTodo(todo)}
+                className='checkbox'
+                style={{ backgroundColor: todo.status ? '#A879E6' : 'white' }}></button>
+              <p>{todo.id} - {todo.name}</p>
+              <button onClick={() => handleWithEditButtonClick(todo)}>
+                <AiOutlineEdit size={20} color={'#64697b'}></AiOutlineEdit>
+              </button>
+              <button onClick={() => deleteTodo(todo)}>
+                <AiOutlineDelete size={20} color={'#64697b'}></AiOutlineDelete>
+              </button>
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
+
+
+  async function handleWithNewButton() {
+    setInputVisility(!inputVisbility)
+  }
+
+  async function handleWithEditButtonClick(todo) {
+    setSelectedTodo(todo)
+    setInputVisility(true)
+  }
+
+  async function getTodos() {
+    const res = await axios.get('http://localhost:3333/todos')
+    setTodos(res.data)
+  }
+
+  async function editTodo() {
+    const res = await axios.put('http://localhost:3333/todos', {
+      id: selectedTodo.id,
+      name: inputValue
+    })
+    setSelectedTodo()
+    setInputVisility(false)
+    getTodos()
+    setInputValue('')
+  }
+
+  async function createTodo() {
+    const res = await axios.post('http://localhost:3333/todos', { name: inputValue })
+    getTodos()
+    setInputVisility(!inputVisbility)
+    setInputValue('')
+  }
+
+  async function deleteTodo(todo) {
+    await axios.delete(`http://localhost:3333/todos/${todo.id}`)
+    getTodos()
+  }
+
+  async function modifiStatusTodo(todo) {
+    const res = await axios.put('http://localhost:3333/todos', {
+      id: todo.id,
+      status: !todo.status
+    })
+    getTodos()
+  }
+
+  //Criando os estados
+  const [todos, setTodos] = useState([])
+  const [inputValue, setInputValue] = useState('')
+  const [inputVisbility, setInputVisility] = useState(false)
+  const [selectedTodo, setSelectedTodo] = useState()
+
+  useEffect(() => {
+    getTodos()
+  }, [])
+
+  return (
+    <div className="App">
+      <header className="container">
+
+        <div className='header'>
+          <h1>Crud</h1>
+        </div>
+
+        {/* Invocando o compnente */}
+        <Todos todos={todos}></Todos>
+
+        <input
+          value={inputValue}
+          style={{ display: inputVisbility ? 'block' : 'none' }}
+          onChange={(event) => {
+            setInputValue(event.target.value)
+          }}
+          className='inputName'
+        ></input>
+        <button onClick={inputVisbility ? selectedTodo ? editTodo : createTodo : handleWithNewButton} className='newTaskButton'>
+          {inputVisbility ? 'Cadastrar' : '+ Novo registro'}
+        </button>
+      </header>
+    </div>
+  );
+}
+
+export default App;
+```
+
+<h4 align="right">
+
+[Voltar para o Menu Geral](#menu-geral)
+</h4>
+
+Codificar o arquivo App.css
+```shell
+button {
+  border: none;
+}
+
+.App {
+  text-align: center;
+}
+
+.container {
+  background-color: #dae0f5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.todos {
+  background-color: white;
+  width: 508px;
+  height: 383px;
+  overflow-y: scroll;
+}
+
+.todo {
+  margin-top: 1rem;
+  margin-bottom: -1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.todo p {
+  min-width: 200px;
+  max-width: 200px;
+  text-align: start;
+
+  font-size: 1rem;
+  font-weight: bold;
+  color: #64697b;
+}
+.checkbox {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+
+  border: 2px solid #64697b;
+  box-shadow: none;
+  margin: 10px;
+}
+.header {
+  background-color: #a879e6;
+  width: 508px;
+  height: 60px;
+  box-shadow: 0px 0px 21px -7px rgba(0, 0, 0, 0.3);
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 0.8rem;
+}
+.newTaskButton {
+  border: none;
+  background-color: #a879e6;
+  width: 160px;
+  height: 50px;
+  border-radius: 24px;
+  margin-top: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+.inputName {
+  margin-top: 10px;
+  text-align: center;
+  border: none;
+  height: 50px;
+  width: 200px;
+  box-shadow: 0px 0px 21px -7px rgba(0, 0, 0, 0.3);
+}
+input:focus {
+  outline: none;
+}
+```
+
+<h4 align="right">
+
+[Voltar para o Menu Geral](#menu-geral)
+</h4>
+
+
+## Autor
+<img src="https://avatars.githubusercontent.com/u/13952621?v=4" width="100px;" alt=""/>
+<br />
+<sub><b><a href="https://www.linkedin.com/in/janescleston/" title="LinkedIn">Janes Cleston</a></b></sub> 🚀
+
+Feito com ❤️ por Janes Cleston 👋🏽
+<br /><br />
+
+## Minhas Skills
+<a href="https://pt.wikipedia.org/wiki/Linux"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" width="50"/></a>&nbsp;&nbsp;&nbsp;
+<a href="https://pt.wikipedia.org/wiki/HTML5"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain-wordmark.svg" width="50"/></a>&nbsp;&nbsp;&nbsp;
+<a href="https://pt.wikipedia.org/wiki/CSS3"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain-wordmark.svg" width="50"/></a>&nbsp;&nbsp;&nbsp;
+<a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" width="50"/></a>&nbsp;&nbsp;&nbsp;
+<a href="https://www.php.net/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg" width="50"/></a>&nbsp;&nbsp;&nbsp;
+<a href="https://www.mysql.com/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-plain-wordmark.svg" width="50"/></a>&nbsp;&nbsp;&nbsp;
+<a href="https://www.postgresql.org/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-plain-wordmark.svg" width="50"/></a>&nbsp;&nbsp;&nbsp;
+<a href="https://github.com/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original-wordmark.svg" width="50"/></a>
+<br /><br />
+
+## Estou aprendendo
+<a href="https://pt-br.reactjs.org/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" width="50"/></a>&nbsp;&nbsp;&nbsp;
+<a href="https://nodejs.org/en/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain.svg" width="50"/></a>
+<br /><br />
+
+## Contatos
+<div>
+<a href="https://www.linkedin.com/in/janescleston/" target="blank"><img src="https://img.shields.io/badge/-Janes Cleston-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
+<a href="https://www.instagram.com/jcleston/" target="blank"><img src="https://img.shields.io/badge/-Jcleston-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white"></a>
+<a href = "mailto:janes.cleston.silva@gmail.com"><img src="https://img.shields.io/badge/janes.cleston.silva@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white"></a>
+<a href="https://jcleston.github.io/github-page/" target="_blank"><img alt="Website" src="https://img.shields.io/website?style=for-the-badge&url=https%3A%2F%2Fjcleston.github.io%2Fgithub-page%2F"></a>
+</div>
+<br /><br />
