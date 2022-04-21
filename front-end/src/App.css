@@ -7,7 +7,7 @@ button {
 }
 
 .container {
-  background-color: #dae0f5;
+  background-color: #C4CAD0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -47,7 +47,7 @@ button {
   margin: 10px;
 }
 .header {
-  background-color: #a879e6;
+  background-color: #1C91CD;
   width: 508px;
   height: 60px;
   box-shadow: 0px 0px 21px -7px rgba(0, 0, 0, 0.3);
@@ -60,7 +60,7 @@ button {
 }
 .newTaskButton {
   border: none;
-  background-color: #a879e6;
+  background-color: #1C91CD;
   width: 160px;
   height: 50px;
   border-radius: 24px;

@@ -17,13 +17,13 @@ function App() {
               <button
                 onClick={() => modifiStatusTodo(todo)}
                 className='checkbox'
-                style={{ backgroundColor: todo.status ? '#A879E6' : 'white' }}></button>
+                style={{ backgroundColor: todo.status ? '#1C91CD' : 'white' }}></button>
               <p>{todo.id} - {todo.name}</p>
               <button onClick={() => handleWithEditButtonClick(todo)}>
-                <AiOutlineEdit size={20} color={'#64697b'}></AiOutlineEdit>
+                <AiOutlineEdit size={20} color={'#1C91CD'}></AiOutlineEdit>
               </button>
               <button onClick={() => deleteTodo(todo)}>
-                <AiOutlineDelete size={20} color={'#64697b'}></AiOutlineDelete>
+                <AiOutlineDelete size={20} color={'#1C91CD'}></AiOutlineDelete>
               </button>
             </div>
           )
