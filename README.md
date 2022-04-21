@@ -293,11 +293,12 @@ Obs: A opção create-react-app só está disponível à partir da versão 14.0.
 //Removendo as dependências antigas
 $ sudo apt-get remove nodejs
 $ sudo apt-get remove npm
+
 //Verificando se foi removido
 $ which nodejs
 $ which node
 ```
-//Para instalar versões mais recentes, utilizaremos o nvm:
+Para instalar versões mais recentes, utilizaremos o nvm:
 ```shell
 //Instalando o nvm
 $ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
@@ -321,7 +322,6 @@ $ nvm use v14.0.0
 Para utilizar o creat-react-app devemos executar na raiz do projeto o comando:
 ```shell
 $ source ~/.bashrc
-# $ npm init
 $ npx create-react-app my-app
 ```
 
