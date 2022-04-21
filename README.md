@@ -180,7 +180,13 @@ todosRoutes.post("/todos", async (req, res) => {
 
 // Read
 todosRoutes.get("/todos", async (req, res) => {
-    const todos = await prisma.todo.findMany()
+    const todos = await prisma.todo.findMany({
+        orderBy: [
+            {
+                id: 'asc'
+            }
+        ]
+    })
     return res.status(200).json(todos)
 })
 
@@ -372,13 +378,13 @@ function App() {
               <button
                 onClick={() => modifiStatusTodo(todo)}
                 className='checkbox'
-                style={{ backgroundColor: todo.status ? '#A879E6' : 'white' }}></button>
+                style={{ backgroundColor: todo.status ? '#1C91CD' : 'white' }}></button>
               <p>{todo.id} - {todo.name}</p>
               <button onClick={() => handleWithEditButtonClick(todo)}>
-                <AiOutlineEdit size={20} color={'#64697b'}></AiOutlineEdit>
+                <AiOutlineEdit size={20} color={'#1C91CD'}></AiOutlineEdit>
               </button>
               <button onClick={() => deleteTodo(todo)}>
-                <AiOutlineDelete size={20} color={'#64697b'}></AiOutlineDelete>
+                <AiOutlineDelete size={20} color={'#1C91CD'}></AiOutlineDelete>
               </button>
             </div>
           )
@@ -471,6 +477,7 @@ function App() {
 }
 
 export default App;
+
 ```
 
 <h4 align="right">
@@ -489,7 +496,7 @@ button {
 }
 
 .container {
-  background-color: #dae0f5;
+  background-color: #C4CAD0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -529,7 +536,7 @@ button {
   margin: 10px;
 }
 .header {
-  background-color: #a879e6;
+  background-color: #1C91CD;
   width: 508px;
   height: 60px;
   box-shadow: 0px 0px 21px -7px rgba(0, 0, 0, 0.3);
@@ -542,7 +549,7 @@ button {
 }
 .newTaskButton {
   border: none;
-  background-color: #a879e6;
+  background-color: #1C91CD;
   width: 160px;
   height: 50px;
   border-radius: 24px;
@@ -562,6 +569,7 @@ button {
 input:focus {
   outline: none;
 }
+
 ```
 
 <h4 align="right">
